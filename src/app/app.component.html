@@ -3,18 +3,61 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  
+  <form action="action.js">
+    <table border=1dp>
+      <tr>
+        <th>First Name:</th>
+        <th><input type="text" name="firstname"></th>
+      </tr>
+      <tr>
+        <th>Last Name:</th>
+        <th><input type="text" name="lastname"></th>
+      </tr>
+      <tr>
+        <th>Major:</th>
+        <th>
+          <select>
+            <option type="checkbox" name="major" id="archEng">Architectural Engineering</option>
+            <option type="checkbox" name="major" id="bioEng">Biological Engineering</option>>
+            <option type="checkbox" name="major" id="biomedEng">Biomedical Engineering</option>>
+            <option type="checkbox" name="major" id="chemEng">Chemical Engineering</option>>
+            <option type="checkbox" name="major" id="civEng">Civil Engineering</option>>
+            <option type="checkbox" name="major" id="compEng">Computer Engineering</option>>
+            <option type="checkbox" name="major" id="compSci">Computer Science</option>>
+            <option type="checkbox" name="major" id="elecEng">Electrical Engineering</option>>
+            <option type="checkbox" name="major" id="indEng">Industrial Engineering</option>>
+            <option type="checkbox" name="major" id="mechEng">Mechanical Engineering</option>>
+            <option type="checkbox" name="major" id="other">Other</option>
+          </select>
+        </th>
+      </tr>
+      <tr>
+        <th>Classification:</th>
+        <th>
+          <input type="radio" name="classification" id="freshman">Freshman<br>
+          <input type="radio" name="classification" id="sophomore">Sophomore<br>
+          <input type="radio" name="classification" id="junior">Junior<br>
+          <input type="radio" name="classification" id="senior">Senior<br>
+          <input type="radio" name="classification" id="gradStudent">Graduate Student<br>
+          <input type="radio" name="classification" id="graduate">Graduate<br>
+        </th>
+      </tr>
+      <tr>
+        <th>Email:</th>
+        <th><input type="text" name="email"></th>
+      </tr>
+      <tr>
+        <th>Slack:</th>
+        <th>
+          <input type="radio" name="slack" id="yes">Yes<br>
+          <input type="radio" name="slack" id="no">No<br>
+          <input type="radio" name="slack" id="alreadyIn">Already in Slack<br>
+        </th>
+      </tr>
+    </table>
+    <input type="submit" value="Submit">  
+  </form>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
 
