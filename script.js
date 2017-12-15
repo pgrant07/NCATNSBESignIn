@@ -1,7 +1,4 @@
 $(document).ready(function(){
-    var firebaseRef=firebase.database().ref();
-    var studentRef=firebaseRef.child('Students');
-
     /**
      * Constructor for Student object
      *
@@ -36,6 +33,7 @@ $(document).ready(function(){
     function createStudent(firstName, lastName, major, classification, email, slack){
         var newStudent=new Student(firstName, lastName, major, classification, email, slack);
         console.log(newStudent);
+        var firebaseRef=firebase.database().ref();
         firebaseRef.child("Students").push(newStudent);
     }
 
@@ -45,10 +43,17 @@ $(document).ready(function(){
      * @param {string} em the email of the user to be checked
      */
     function isEmailInDatabase(em){
+        var firebaseRef=firebase.database().ref();
+        var studentRef=firebaseRef.child('Students');
+        var query=studentRef.orderByChild('email').equalTo(em).limitToFirst(1);
         var emailFound=false;
-        console.log(studentRef)
-        studentRef.orderByChild('email').equalTo(em).on('value', function(snapshot){
-            /*
+
+        query.on('value', snapshot=>{
+            console.log('email found');
+            emailFound=true;
+        });
+        /*
+        studentRef.once('value', function(snapshot){
             snapshot.forEach(function(childSnapshot){
                 var childKey=childSnapshot.key;
                 var childData=childSnapshot.val();
@@ -59,12 +64,12 @@ $(document).ready(function(){
                     return true;
                 }
             });
-            */
             console.log(snapshot);
             //return emailFound;
         });
-        console.log(emailFound)
-        //return emailFound;
+        */
+        //console.log(emailFound)
+        return emailFound;
     }
 
     /**
