@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    let memEmail;
+    
     /**
      * Constructor for Student object
      *
@@ -20,6 +22,25 @@ $(document).ready(function(){
         this.slack=slack;
     }
 
+    let searchDB=new Promise(function(resolve, reject){
+        let firebaseRef=firebase.database().ref();
+        let studentRef=firebaseRef.child('Students');
+        let query=studentRef.orderByChild('email').equalTo(memEmail).limitToFirst(1);
+        let emailFound=false;
+
+        query.on('value', snapshot=>{
+            console.log('email found');
+            emailFound=true;
+        });
+
+        if(emailFound==true){
+            resolve(emailFound);
+        }     
+        else{
+            reject(alert('Email not found in database. Please enter in information under the new member sign-in'));
+        }
+    });
+
     /**
      * creates new student and adds them to Firebase database
      *
@@ -31,9 +52,9 @@ $(document).ready(function(){
      * @param {string} slack the Student's slack status (whether they want to be
      */
     function createStudent(firstName, lastName, major, classification, email, slack){
-        var newStudent=new Student(firstName, lastName, major, classification, email, slack);
+        let newStudent=new Student(firstName, lastName, major, classification, email, slack);
         console.log(newStudent);
-        var firebaseRef=firebase.database().ref();
+        let firebaseRef=firebase.database().ref();
         firebaseRef.child("Students").push(newStudent);
     }
 
@@ -43,20 +64,12 @@ $(document).ready(function(){
      * @param {string} em the email of the user to be checked
      */
     function isEmailInDatabase(em){
-        var firebaseRef=firebase.database().ref();
-        var studentRef=firebaseRef.child('Students');
-        var query=studentRef.orderByChild('email').equalTo(em).limitToFirst(1);
-        var emailFound=false;
-
-        query.on('value', snapshot=>{
-            console.log('email found');
-            emailFound=true;
-        });
+        
         /*
         studentRef.once('value', function(snapshot){
             snapshot.forEach(function(childSnapshot){
-                var childKey=childSnapshot.key;
-                var childData=childSnapshot.val();
+                let childKey=childSnapshot.key;
+                let childData=childSnapshot.val();
                 console.log(childData);
                 if(childData.email==em){
                     console.log('This email is in the database');
@@ -82,15 +95,16 @@ $(document).ready(function(){
     $('#memForm').on('submit', function(e){
         e.preventDefault();
 
-        var memEmail=$('#memEmail').val();
+        memEmail=$('#memEmail').val();
         if(!memEmail.endsWith('@aggies.ncat.edu') || memEmail.length<17){
             alert('Please enter in a valid email address');
             return false;
         }
         //console.log(checkEmail(memEmail));
-        if(!isEmailInDatabase(memEmail)){
-            alert('Email is not found in database. Please sign in below');
-        }
+        searchDB.then(alert('Email found in database. Thank you for signing in'))
+        // if(!isEmailInDatabase(memEmail)){
+        //     alert('Email is not found in database. Please sign in below');
+        // }
 
     });
 
@@ -104,12 +118,12 @@ $(document).ready(function(){
      */
     $('#form').on('submit', function(e){
         e.preventDefault();
-        var firstName=$('#firstname').val();
-        var lastName=$('#lastname').val();
-        var major=$('#major').val();
-        var classification=$('#classification').val();
-        var email=$('#email').val();;
-        var slack=$('#slack').val();
+        let firstName=$('#firstname').val();
+        let lastName=$('#lastname').val();
+        let major=$('#major').val();
+        let classification=$('#classification').val();
+        let email=$('#email').val();;
+        let slack=$('#slack').val();
 
         if(firstName==null ||firstName==''){
             alert('Please fill out first name');
