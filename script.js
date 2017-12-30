@@ -23,8 +23,6 @@ $(document).ready(function(){
         this.slack=slack;
     }
         
-        
-        
     /**
     * creates new student and adds them to Firebase database
     *
@@ -47,6 +45,7 @@ $(document).ready(function(){
     * Checks the user's validated email to see if it exists in the database
     *
     * @param {string} em the email of the user to be checked
+    * @return {Promise} returns a Promise for whether the email was verified in the database or not
     */
     function isEmailInDatabase(em){
         let firebaseRef=firebase.database().ref();
