@@ -11,113 +11,139 @@
 </head>
 <body>
     <div align="center" class="header">
+        <h1><span class="card-title">Welcome to NCAT NSBE Sign In!</span></h1>
         <div class="container">
             <div class="row">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-content">
-                            <h1><span class="card-title">Welcome to NCAT NSBE Sign In!</span></h1>
-                            <h5>Already signed in before?</h5>
-                            <form id="memForm">
-                                <div class="input-field col s12">
-                                    <input type="email" id="memEmail" name="memEmail" />
-                                    <label>Aggie Email</label>
-                                </div>
-                                <input type="submit" id="memSubmit" name="memSubmit" class="btn"/>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr />
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">Haven't signed in before OR need to update information? Enter your information below</span>
-                            <div class="row">
-                                <form id="form" name="attendanceForm">
-                                    <div class="input-field col s6">
-                                        <input id="firstname" type="text" class="validate">
-                                        <label for="first_name">First Name</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input id="lastname" type="text" class="validate">
-                                        <label for="last_name">Last Name</label>
-                                    </div>
+                            <span class="card-title">Already signed in before?<span>
+                                <form id="memForm">
                                     <div class="input-field col s12">
-                                        <select multiple id="major">
-                                            <option type="checkbox" name="major" id="archEng">Architectural Engineering</option>
-                                            <option type="checkbox" name="major" id="bioEng">Biological Engineering</option>
-                                            <option type="checkbox" name="major" id="biomedEng">Biomedical Engineering</option>
-                                            <option type="checkbox" name="major" id="chemEng">Chemical Engineering</option>
-                                            <option type="checkbox" name="major" id="civEng">Civil Engineering</option>
-                                            <option type="checkbox" name="major" id="compEng">Computer Engineering</option>
-                                            <option type="checkbox" name="major" id="compSci">Computer Science</option>
-                                            <option type="checkbox" name="major" id="elecEng">Electrical Engineering</option>
-                                            <option type="checkbox" name="major" id="indEng">Industrial Engineering</option>
-                                            <option type="checkbox" name="major" id="mechEng">Mechanical Engineering</option>
-                                            <option type="checkbox" name="major" id="other">Other</option>
-                                        </select>
-                                        <label>Major:</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <select id="classification">
-                                            <option type="radio" name="classification" id="freshman">Freshman</option>
-                                            <option type="radio" name="classification" id="sophomore">Sophomore</option>
-                                            <option type="radio" name="classification" id="junior">Junior</option>
-                                            <option type="radio" name="classification" id="senior">Senior</option>
-                                            <option type="radio" name="classification" id="gradStudent">Graduate Student</option>
-                                            <option type="radio" name="classification" id="graduate">Graduate</option>
-                                        </select>
-                                        <label>Classification:</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input type="email" name="email" id="email" class="validate">
+                                        <input type="email" id="memEmail" name="memEmail" />
                                         <label>Aggie Email</label>
                                     </div>
-                                    <div class="input-field col s12">
-                                        <select id="slack">
-                                            <option type="radio" name="slack" id="yes">Yes</option>
-                                            <option type="radio" name="slack" id="no">No</option>
-                                            <option type="radio" name="slack" id="alreadyIn">Already in Slack</option>
-                                        </select>
-                                    </div>
-                                    <input type="submit" value="Submit" id="submit" class="btn">  
+                                    <input type="submit" id="memSubmit" name="memSubmit" class="btn"/>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Haven't signed in before OR need to update information? Enter your information below</span>
+                                <div class="row">
+                                    <form id="form" name="attendanceForm">
+                                        <div class="input-field col s6">
+                                            <input id="firstname" type="text" class="validate">
+                                            <label for="first_name">First Name</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input id="lastname" type="text" class="validate">
+                                            <label for="last_name">Last Name</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <select multiple id="major" onchange='showField()'>
+                                                <option type="checkbox" name="major" id="archEng">Architectural Engineering</option>
+                                                <option type="checkbox" name="major" id="bioEng">Biological Engineering</option>
+                                                <option type="checkbox" name="major" id="biomedEng">Biomedical Engineering</option>
+                                                <option type="checkbox" name="major" id="chemEng">Chemical Engineering</option>
+                                                <option type="checkbox" name="major" id="civEng">Civil Engineering</option>
+                                                <option type="checkbox" name="major" id="compEng">Computer Engineering</option>
+                                                <option type="checkbox" name="major" id="compSci">Computer Science</option>
+                                                <option type="checkbox" name="major" id="elecEng">Electrical Engineering</option>
+                                                <option type="checkbox" name="major" id="indEng">Industrial Engineering</option>
+                                                <option type="checkbox" name="major" id="mechEng">Mechanical Engineering</option>
+                                                <option type="checkbox" name="major" id="other">Other</option>
+                                            </select>
+                                            <label>Major:</label>
+                                        </div>
+                                        <div class="input-field col s12" id="other_major" style='display: none;'>
+                                            <input class="validate" type="text" name="other_major" id="other_major_input"/>
+                                            <label>Specify other Major</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <select id="classification">
+                                                <option type="radio" name="classification" id="freshman">Freshman</option>
+                                                <option type="radio" name="classification" id="sophomore">Sophomore</option>
+                                                <option type="radio" name="classification" id="junior">Junior</option>
+                                                <option type="radio" name="classification" id="senior">Senior</option>
+                                                <option type="radio" name="classification" id="gradStudent">Graduate Student</option>
+                                                <option type="radio" name="classification" id="graduate">Graduate</option>
+                                            </select>
+                                            <label>Classification:</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="email" name="email" id="email" class="validate">
+                                            <label>Aggie Email</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <select id="slack">
+                                                <option type="radio" name="slack" id="yes">Yes</option>
+                                                <option type="radio" name="slack" id="no">No</option>
+                                                <option type="radio" name="slack" id="alreadyIn">Already in Slack</option>
+                                            </select>
+                                            <label>Want to be in the NCAT NSBE Slack?</label>
+                                        </div>
+                                        <input type="submit" value="Submit" id="submit" class="btn">  
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
         
-    </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyA50jYlTf-DIATyUpE50680XDecrCJgF_8",
+                authDomain: "ncat-nsbe-sign-in.firebaseapp.com",
+                databaseURL: "https://ncat-nsbe-sign-in.firebaseio.com",
+                projectId: "ncat-nsbe-sign-in",
+                storageBucket: "ncat-nsbe-sign-in.appspot.com",
+                messagingSenderId: "1017154211156"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('select').material_select();
+            });
+        </script>
+        <script src="script.js"></script>
+        <script>
+            /**
+            * Allows the user to specify their major if they have selected the other option
+            * @param {string} otherSelected The string gotten from the major selection
+            * 
+            */
+            function showField(){
+                let selectedItems=$('#major').val();;
+                console.log(selectedItems);
+                let element=document.getElementById('other_major');
+                let otherSelected=false;
+                for(let i=0; i<selectedItems.length; i++){
+                    if(selectedItems[i].toLowerCase().includes('other')){
+                        otherSelected=true;
+                    }
+                }
+                if(otherSelected){
+                    element.style.display='block';
+                }else{
+                    element.style.display='none';
+                }
+            }
+        </script>
+    </body>
+    </html>
     
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyA50jYlTf-DIATyUpE50680XDecrCJgF_8",
-            authDomain: "ncat-nsbe-sign-in.firebaseapp.com",
-            databaseURL: "https://ncat-nsbe-sign-in.firebaseio.com",
-            projectId: "ncat-nsbe-sign-in",
-            storageBucket: "ncat-nsbe-sign-in.appspot.com",
-            messagingSenderId: "1017154211156"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('select').material_select();
-        });
-    </script>
-    <!--<script type='text/javascript' src="/home/pkgrant/Documents/Website Work/NCATNSBESignIn/script.js" />
-    -->
-    <script src="script.js"></script>
-</body>
-</html>

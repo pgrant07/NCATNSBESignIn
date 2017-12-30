@@ -1,20 +1,16 @@
 h1 {
-    color: #00c;
+    color: #fff;
     font-family: "Merriweather";
     font-size: 250%;
 }
 
 html, body {
     width: 100%;
-    background-color: #444;
+    
 }
 
-table {
-    margin: 0 auto;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-input, select {
-    border-radius: 4px;
+body {
+    background-size: cover;
+    background-image: url('ncat_nsbe2.jpg');
+    background-repeat: no-repeat;
 }

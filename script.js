@@ -94,7 +94,7 @@ $(document).ready(function(){
         
         // let searchDB=new Promise(function(resolve, reject)
         isEmailInDatabase(memEmail).then(function(result){
-            console.log(result);
+            alert(result);
         })
     });
             
@@ -114,6 +114,7 @@ $(document).ready(function(){
         let classification=$('#classification').val();
         let email=$('#email').val();;
         let slack=$('#slack').val();
+        let other_major=$('#other_major_input').val();
         //check if first name is blank
         if(firstName===null || firstName===''){
             alert('Please fill out first name');
@@ -127,6 +128,11 @@ $(document).ready(function(){
         //check if major is blank
         if(major===null || major===''){
             alert('Please indicate major');
+            return false;
+        }
+        console.log('no value for other major: '+noValueForOtherMajor(major, other_major));
+        if(noValueForOtherMajor(major, other_major)){
+            alert('Please specify major for other');
             return false;
         }
         //check if classification is selected
@@ -144,7 +150,9 @@ $(document).ready(function(){
             alert('Please indicate Slack status');
             return false;
         }
-                
+        
+        //Check for other major and store value into major list
+        major=otherMajor(major, other_major);
         //create new student
         createStudent(firstName, lastName, major, classification, email, slack);
                 
@@ -156,5 +164,56 @@ $(document).ready(function(){
         document.querySelector('#email').value='';
         document.querySelector('#slack').value='';
     });
+
+    /**
+     * Checks to see if a list of majors has other selected
+     * @param {Array} majorList
+     * @return {boolean} returns true if other was selected, otherwise returns false 
+     */
+    function isOtherSelected(majorList){
+        for(let i=0; i<majorList.length; i++){
+            if(majorList[i].toLowerCase().includes('other')){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the option other was selected when picking a major and if so it changes the string to the specified major
+     * @param {Array} majorList list of student majors
+     * @param {string} other_major specified other major
+     * @return {Array} majorList of all of the student's majors
+     */
+    function otherMajor(majorList, other_major){
+        if(isOtherSelected(majorList)){
+            let indexOther;
+            for(let i=0; i<majorList.length; i++){
+                if(majorList[i].toLowerCase().includes('other')){
+                    majorList[i]=other_major;
+                }
+            }
+        }
+        return  majorList;
+    }
+
+    /**
+     * searches through major list to see if their is an empty value for the other option and returns true or false
+     * @param {Array} majorList list of majors for the student
+     * @param {string} other_major name of other major
+     * @return {boolean} returns true if a other was selected but no input for other was given, otherwise returns false
+     */
+    function noValueForOtherMajor(majorList, other_major){
+        console.log('other major: '+other_major);
+        for(let i=0; i<majorList.length; i++){
+            if(majorList[i].toLowerCase().includes('other')){
+                if(other_major === null || other_major === '' || other_major === undefined){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
 });
         
