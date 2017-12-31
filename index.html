@@ -103,15 +103,16 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+        <script type='text/javascript' src='config.js'></script>
         <script>
             // Initialize Firebase
             var config = {
-                apiKey: "AIzaSyA50jYlTf-DIATyUpE50680XDecrCJgF_8",
+                apiKey: config.MY_KEY,
                 authDomain: "ncat-nsbe-sign-in.firebaseapp.com",
                 databaseURL: "https://ncat-nsbe-sign-in.firebaseio.com",
                 projectId: "ncat-nsbe-sign-in",
                 storageBucket: "ncat-nsbe-sign-in.appspot.com",
-                messagingSenderId: "1017154211156"
+                messagingSenderId: config.MESSAGE_ID
             };
             firebase.initializeApp(config);
         </script>

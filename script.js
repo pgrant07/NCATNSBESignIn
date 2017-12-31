@@ -15,7 +15,6 @@ $(document).ready(function(){
     */
     function Student(firstName, lastName, major, classification, email, slack){
         this.firstName=firstName;
-        console.log(lastName);
         this.lastName=lastName;
         this.major=major;
         this.classification=classification;
@@ -35,7 +34,6 @@ $(document).ready(function(){
     */
     function createStudent(firstName, lastName, major, classification, email, slack){
         let newStudent=new Student(firstName, lastName, major, classification, email, slack);
-        console.log(newStudent);
         username=newStudent.email.replace('@aggies.ncat.edu','');
         let firebaseRef=firebase.database().ref();
         firebaseRef.child('Students/'+username).set(newStudent);
@@ -52,7 +50,6 @@ $(document).ready(function(){
         let studentRef=firebaseRef.child('Students');
         let emailFound=false;
         const username = memEmail.replace('@aggies.ncat.edu','');
-        //console.log(username);
         return studentRef.orderByKey().equalTo(username).once('value').then(function(snapshot){
             snapshot.forEach(function(data){
                 if(data.key === username){
@@ -87,6 +84,8 @@ $(document).ready(function(){
         e.preventDefault();
                 
         memEmail=$('#memEmail').val();
+
+        //Check if valid email
         if(!memEmail.endsWith('@aggies.ncat.edu') || memEmail.length<17){
             alert('Please enter in a valid email address');
             return false;
@@ -171,7 +170,9 @@ $(document).ready(function(){
      * @return {boolean} returns true if other was selected, otherwise returns false 
      */
     function isOtherSelected(majorList){
+        //Iterate through major list
         for(let i=0; i<majorList.length; i++){
+            //If other is selected return true
             if(majorList[i].toLowerCase().includes('other')){
                 return true;
             }
@@ -188,7 +189,9 @@ $(document).ready(function(){
     function otherMajor(majorList, other_major){
         if(isOtherSelected(majorList)){
             let indexOther;
+            //Iterate through major list
             for(let i=0; i<majorList.length; i++){
+                //If other is selected, replace string with specified major
                 if(majorList[i].toLowerCase().includes('other')){
                     majorList[i]=other_major;
                 }
@@ -204,8 +207,9 @@ $(document).ready(function(){
      * @return {boolean} returns true if a other was selected but no input for other was given, otherwise returns false
      */
     function noValueForOtherMajor(majorList, other_major){
-        console.log('other major: '+other_major);
+        //Iterate through major list
         for(let i=0; i<majorList.length; i++){
+            //if other is selected and nothing is specified return true
             if(majorList[i].toLowerCase().includes('other')){
                 if(other_major === null || other_major === '' || other_major === undefined){
                     return true;
